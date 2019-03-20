@@ -194,13 +194,11 @@
 		63D18B1822424D7F00CD6F01 /* DDOpenKit */ = {
 			isa = PBXGroup;
 			children = (
-				63D18B1922424D7F00CD6F01 /* UI */,
-				63D18B3122424D7F00CD6F01 /* Database */,
+				63D18B6822424D7F00CD6F01 /* DDShotcut.h */,
 				63D18B3222424D7F00CD6F01 /* DDOpenKit.h */,
+				63D18B1922424D7F00CD6F01 /* UI */,
 				63D18B3322424D7F00CD6F01 /* Category */,
 				63D18B6322424D7F00CD6F01 /* Util */,
-				63D18B6722424D7F00CD6F01 /* Resource */,
-				63D18B6822424D7F00CD6F01 /* DDShotcut.h */,
 			);
 			path = DDOpenKit;
 			sourceTree = "<group>";
@@ -208,10 +206,10 @@
 		63D18B1922424D7F00CD6F01 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				63D18B2922424D7F00CD6F01 /* DDUI.h */,
 				63D18B1A22424D7F00CD6F01 /* WebView */,
 				63D18B1D22424D7F00CD6F01 /* Dialog */,
 				63D18B2622424D7F00CD6F01 /* View */,
-				63D18B2922424D7F00CD6F01 /* DDUI.h */,
 				63D18B2A22424D7F00CD6F01 /* Base */,
 			);
 			path = UI;
@@ -261,13 +259,6 @@
 				63D18B3022424D7F00CD6F01 /* DDViewController.h */,
 			);
 			path = Base;
-			sourceTree = "<group>";
-		};
-		63D18B3122424D7F00CD6F01 /* Database */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Database;
 			sourceTree = "<group>";
 		};
 		63D18B3322424D7F00CD6F01 /* Category */ = {
@@ -332,13 +323,6 @@
 				63D18B6622424D7F00CD6F01 /* DDTool.m */,
 			);
 			path = Util;
-			sourceTree = "<group>";
-		};
-		63D18B6722424D7F00CD6F01 /* Resource */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resource;
 			sourceTree = "<group>";
 		};
 		F293177C84DF6D4C6452B158 /* Pods */ = {
