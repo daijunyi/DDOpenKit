@@ -252,11 +252,11 @@
 			isa = PBXGroup;
 			children = (
 				63D18B2B22424D7F00CD6F01 /* DDBarView.h */,
+				63D18B3022424D7F00CD6F01 /* DDViewController.h */,
 				63D18B2C22424D7F00CD6F01 /* DDViewController.m */,
 				63D18B2D22424D7F00CD6F01 /* DDNavigationViewController.h */,
 				63D18B2E22424D7F00CD6F01 /* DDBarView.m */,
 				63D18B2F22424D7F00CD6F01 /* DDNavigationViewController.m */,
-				63D18B3022424D7F00CD6F01 /* DDViewController.h */,
 			);
 			path = Base;
 			sourceTree = "<group>";

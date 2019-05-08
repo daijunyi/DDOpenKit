@@ -72,7 +72,7 @@ static char onViewDidLoadWithBlockKey;
 }
 
 - (void)dealloc{
-//    Log(@"销毁了：%@",self.className);
+    Log(@"销毁了：%@",NSStringFromClass(self.class));
 }
 
 #pragma mark-  删除页面中的一些页面
