@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "DDOpenKit"
-  s.version      = "1.1.1"
+  s.version      = "1.1.2"
   s.summary      = "A ios tool library"
   s.homepage     = "https://github.com/daijunyi/DDOpenKit"
   s.license      = "MIT"
