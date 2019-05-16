@@ -52,7 +52,8 @@ static char onBackgroundClickWithBlockkey;
         self.containerView = [[UIView alloc] init];
         [self addSubview:self.containerView];
     }
-    self.containerView.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = [UIColor clearColor];
+    self.containerView.backgroundColor = [UIColor clearColor];
     self.containerView.userInteractionEnabled = true;
     UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onBottomViewClick)];
     objc_setAssociatedObject(self.containerView, &containerViewGesKey, ges, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
