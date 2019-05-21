@@ -25,3 +25,6 @@ pod 'DDOpenKit', '~> 1.1.3'
 
 
 
+## 1.1.4版本
+
+- CALayer+YYAdd 添加啦borderUIColor 来使用xib 中keyPath的设置

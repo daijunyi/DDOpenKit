@@ -10,5 +10,16 @@
 
 @implementation CALayer (DDAdd)
 
+- (UIColor *)borderUIColor{
+    if (self.borderColor == nil) {
+        return nil;
+    }else{
+        return [[UIColor alloc] initWithCGColor:self.borderColor];
+    }
+}
+
+- (void)setBorderUIColor:(UIColor *)borderUIColor{
+    self.borderColor = borderUIColor.CGColor;
+}
 
 @end
