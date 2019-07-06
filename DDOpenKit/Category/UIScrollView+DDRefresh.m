@@ -13,6 +13,7 @@ static char currentPageKey;
 static char setOnRefreshOrLoadMoreCallBackWithBlockKey;
 static char pageSizeKey;
 static char isRefreshIngKey;
+static char noMoreDataKey;
 
 @implementation UIScrollView (DDRefresh)
 
@@ -32,6 +33,7 @@ static char isRefreshIngKey;
         }
         strongSelf.isRefreshIng = true;
         strongSelf.currentPage = 1;
+        [strongSelf setNoNoreData:false];
         [strongSelf.mj_footer resetNoMoreData];
         void (^block)(NSInteger currentPage,NSInteger pageSize,void(^refreshFinish)(BOOL isRefreshSuccess,BOOL noMoreData)) = objc_getAssociatedObject(strongSelf, &setOnRefreshOrLoadMoreCallBackWithBlockKey);
         if (block) {
@@ -44,6 +46,7 @@ static char isRefreshIngKey;
                     strongSelf.currentPage++;
                 }
                 if (noMoreData) {
+                    [strongSelf setNoNoreData:true];
                     [strongSelf.mj_footer endRefreshingWithNoMoreData];
                 }
                 [strongSelf endRefresh];
@@ -65,6 +68,10 @@ static char isRefreshIngKey;
         if (strongSelf.isRefreshIng) {
             return;
         }
+        if([strongSelf noNoreData] == true){
+            [strongSelf.mj_footer endRefreshingWithNoMoreData];
+            return;
+        }
         strongSelf.isRefreshIng = true;
         void (^block)(NSInteger currentPage,NSInteger pageSize,void(^refreshFinish)(BOOL isRefreshSuccess,BOOL noMoreData)) = objc_getAssociatedObject(strongSelf, &setOnRefreshOrLoadMoreCallBackWithBlockKey);
         if (block) {
@@ -77,6 +84,7 @@ static char isRefreshIngKey;
                     strongSelf.currentPage++;
                 }
                 if (noMoreData) {
+                    [strongSelf setNoNoreData:true];
                     [strongSelf.mj_footer endRefreshingWithNoMoreData];
                 }
                 [strongSelf endRefresh];
@@ -139,6 +147,15 @@ static char isRefreshIngKey;
 - (BOOL)isRefreshIng{
     NSNumber *refreshing = objc_getAssociatedObject(self, &isRefreshIngKey);
     return refreshing.boolValue;
+}
+
+- (BOOL)noNoreData{
+    NSNumber *refreshing = objc_getAssociatedObject(self, &noMoreDataKey);
+    return refreshing.boolValue;
+}
+
+- (void)setNoNoreData:(BOOL)noNoreData{
+    objc_setAssociatedObject(self, &noMoreDataKey, [[NSNumber alloc] initWithBool:noNoreData], OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 @end

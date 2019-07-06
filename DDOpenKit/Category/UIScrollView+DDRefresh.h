@@ -30,7 +30,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)endRefresh;
 /**是否正在刷新*/
 @property (nonatomic,assign)BOOL isRefreshIng;
-
+/**
+ 是否还有更多数据
+ */
+@property (nonatomic,assign)BOOL noNoreData;
 @end
 
 NS_ASSUME_NONNULL_END
