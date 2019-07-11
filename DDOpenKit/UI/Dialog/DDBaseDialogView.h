@@ -16,6 +16,8 @@
 -(void)onShowAnimationCallBack;
 -(void)onHiddenAnimationCallBack;
 
+-(CGFloat)onShowAnimationStyleTopBeforeCallBackTopSpace;
+
 -(void)onViewBgClickCallBack;
 -(void)onContainerViewClickCallBack;
 @end
@@ -23,6 +25,7 @@
 typedef enum : NSUInteger {
     TSBaseDialogViewStyleBottom,
     TSBaseDialogViewStyleMiddle,
+    TSBaseDialogViewStyleTop,
 } TSBaseDialogViewStyle;
 
 @interface DDBaseDialogView : UIView<DDBaseDialogViewDelegate>

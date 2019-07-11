@@ -103,7 +103,7 @@ static char onBackgroundClickWithBlockkey;
         [self onViewBgClickCallBack];
     }else{
         [self hidden];
-        void(^block)() = objc_getAssociatedObject(self, &onBackgroundClickWithBlockkey);
+        void(^block)(void) = objc_getAssociatedObject(self, &onBackgroundClickWithBlockkey);
         if (block) {
             block();
         }
@@ -145,6 +145,9 @@ static char onBackgroundClickWithBlockkey;
         }else if(self.style == TSBaseDialogViewStyleMiddle){
             self.containerView.left = (self.width-self.containerView.width)/2;
             self.containerView.centerY = self.height/2;
+        }else if(self.style == TSBaseDialogViewStyleTop){
+            self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
+            self.containerView.bottom = 0;
         }
     }
 
@@ -174,6 +177,16 @@ static char onBackgroundClickWithBlockkey;
         animation.timingFunctions = @[[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear], [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear], [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear], [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear]];
         animation.duration = self.duration;
         [self.containerView.layer addAnimation:animation forKey:@"bouce"];
+    }else if(self.style == TSBaseDialogViewStyleTop){
+        [UIView animateWithDuration:self.duration animations:^{
+            self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:self.bgAlphaComponent];
+            if([self respondsToSelector:@selector(onShowAnimationStyleTopBeforeCallBackTopSpace)]){
+                self.containerView.top = [self onShowAnimationStyleTopBeforeCallBackTopSpace];
+            }else{
+                CGFloat statusBarheight = [[UIApplication sharedApplication] statusBarFrame].size.height;
+                self.containerView.top = statusBarheight;
+            }
+        }];
     }
 
 }
@@ -190,13 +203,18 @@ static char onBackgroundClickWithBlockkey;
         [self onHiddenAnimationCallBack];
         return;
     }
+    __weak typeof(self)weakSelf = self;
     if (self.style == TSBaseDialogViewStyleBottom) {
         [UIView animateWithDuration:self.hiddenDuration animations:^{
             self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
             self.containerView.top = self.height;
         } completion:^(BOOL finished) {
-            self.top = 0;
-            [self removeFromSuperview];
+            __strong typeof(weakSelf)strongSelf = weakSelf;
+            if (!strongSelf) {
+                return;
+            }
+            strongSelf.top = 0;
+            [strongSelf removeFromSuperview];
         }];
     }else if(self.style == TSBaseDialogViewStyleMiddle){
         //中间显示
@@ -206,7 +224,23 @@ static char onBackgroundClickWithBlockkey;
             self.containerView.transform = CGAffineTransformMakeScale(0.1, 0.1);
             self.containerView.alpha = 0;
         } completion:^(BOOL finished) {
-            [self removeFromSuperview];
+            __strong typeof(weakSelf)strongSelf = weakSelf;
+            if (!strongSelf) {
+                return;
+            }
+            [strongSelf removeFromSuperview];
+        }];
+    }else if(self.style == TSBaseDialogViewStyleTop){
+        [UIView animateWithDuration:self.hiddenDuration animations:^{
+            self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0];
+            self.containerView.bottom = 0;
+        } completion:^(BOOL finished) {
+            __strong typeof(weakSelf)strongSelf = weakSelf;
+            if (!strongSelf) {
+                return;
+            }
+            strongSelf.bottom = 0;
+            [strongSelf removeFromSuperview];
         }];
     }
 }
